@@ -13,7 +13,7 @@ var spotify = new Spotify(keys.spotify);
 var client = new Twitter(keys.twitter);
 
 
-// ------- Calling info from twitter ---------
+// ------- Calling info from twitter --------- RUNNING
 // var params = {screen_name: 'mjesuotero'};
 // client.get('statuses/user_timeline', params, function(error, tweets, response) {
 //   if (!error && userRequest === "my-tweets") {
@@ -22,7 +22,7 @@ var client = new Twitter(keys.twitter);
 // });
 
 
-//------- Calling info from Spotify ---------
+//------- Calling info from Spotify --------- NOT RUNNING
 // spotify.search({ type: 'track', query: 'All the Small Things' }, function(err, data) {
 //     if (!error && userRequest === "spotify-this-song") {
 //       return console.log('Error occurred: ' + err);
