@@ -58,6 +58,7 @@ function spotifyResquest() {
 //     }
 //   });
 // };
+}
 
 
 //------- Calling info from OMDB --------- RUNNING
