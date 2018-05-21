@@ -11,12 +11,20 @@ var fs = require("fs");
 var keys = require('./keys.js');
 
 var userRequestType = process.argv[2];
-var userRequestName = process.argv[3];
+
+
+var userRequestString = "";
+
 
 var spotify = new Spotify(keys.spotify);
 var client = new Twitter(keys.twitter);
 
 
+for (var i = 3; i < process.argv.length; i++) {
+    userRequestString += process.argv[i] + " ";
+};
+
+userRequestString.trim();
 
 switch(userRequestType) {
   case "my-tweets":
@@ -47,24 +55,23 @@ function twitterRequest() {
 };
 
 
-//------- Calling info from Spotify --------- NOT RUNNING
+
+// ------- Calling info from Spotify --------- NOT RUNNING
 function spotifyResquest() {
-    console.log('Here sopouse to run spotify code.');
-//  spotify.search({ type: 'track', query: userRequestName }, function(err, spotifyData) {
-//     if (!err) {
-//        console.log(spotifyData); 
-//     } else if (err){
-//        console.log('Error occurred: ' + err);
-//     }
-//   });
-// };
-}
+    spotify.search({ type: 'track', query: userRequestString }, function(err, data) {
+        if (err) {
+          return console.log('Error occurred: ' + err);
+        }
+       
+      console.log(data.tracks.items[0]); 
+      });
+};
 
 
 //------- Calling info from OMDB --------- RUNNING
 function omdbRequest() {
     // Then run a request to the OMDB API with the movie specified
-    request("http://www.omdbapi.com/?t=" + userRequestName + "&y=&plot=short&apikey=40e9cece", function(error, response, body) {
+    request("http://www.omdbapi.com/?t=" + userRequestString + "&y=&plot=short&apikey=40e9cece", function(error, response, body) {
     // If the request is successful (i.e. if the response status code is 200)
     if (!error) {
         console.log("\n");
